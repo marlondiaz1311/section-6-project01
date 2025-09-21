@@ -17,6 +17,9 @@ jobs:
     steps:
       - name: Get Code
         uses: actions/checkout@v5
+      - name: Output information
+        run: |
+        echo "MONGODB_USERNAME: $ {{ env.MONGODB_USERNAME }}"
       - name: Cache dependencies
         uses: actions/cache@v4
         with:
@@ -30,12 +33,12 @@ jobs:
         run: npm test
       - name: Output information
         run: |
-          echo "MONGODB_USERNAME: $ {{ env.MONGODB_USERNAME }}"
+        echo "MONGODB_USERNAME: $ {{ env.MONGODB_USERNAME }}"
   deploy:
     needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Output information
         run: |        
-          echo "MONGODB_USERNAME: $ {{ env.MONGODB_USERNAME }}"
-          echo "MONGODB_USERNAME: $MONGODB_DB_NAME"
+        echo "MONGODB_USERNAME: $ {{ env.MONGODB_USERNAME }}"
+        echo "MONGODB_USERNAME: $MONGODB_DB_NAME"
